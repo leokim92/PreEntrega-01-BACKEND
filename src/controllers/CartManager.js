@@ -2,7 +2,7 @@ const fs = require("fs").promises;
 
 class CartManager {
     constructor(path) {
-        this.cart = [];
+        this.carts = [];
         this.path = path;
         this.lastId = 0;
 
@@ -17,7 +17,7 @@ class CartManager {
                 this.lastId = Math.max (...this.carts.map(cart => cart.id));
             }
         } catch (error) {
-            console.error("Error al cargar los carritos desde el archivo", error);
+            console.error("Error to save cart from file", error);
 
             await this.saveCart();
         }
@@ -44,7 +44,7 @@ class CartManager {
         try {
             const cart = this.carts.find(c => c.id === cartId);
 
-            if(!cart) {
+            if (!cart) {
                 throw new Error (`ID ${cartId} cart doesn't exist`)
             }
 
